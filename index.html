@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>TOKVERSE</title>
+<meta name="description" content="The trenches went vertical. A pixel tower where every floor holds live pump.fun coins by market cap. Green candles take the elevator, red candles take the stairs.">
+<meta name="theme-color" content="#86efac">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png?v=2">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png?v=2">
+<link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48.png?v=2">
+<link rel="icon" type="image/png" sizes="64x64" href="/assets/favicon-64.png?v=2">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="TOKVERSE">
+<meta property="og:description" content="the trenches went vertical. every floor is live pump.fun coins.">
+<meta property="og:image" content="https://tokverse.vercel.app/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="TOKVERSE">
+<meta name="twitter:description" content="the trenches went vertical. every floor is live pump.fun coins.">
+<meta name="twitter:image" content="https://tokverse.vercel.app/assets/og.png">
+<link rel="preload" href="/fonts/PressStart2P.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="/fonts/Jersey10.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="/css/app.css?v=1">
+</head>
+<body>
+<canvas id="sky" aria-hidden="true"></canvas>
+<div id="clouds" aria-hidden="true"></div>
+
+<section id="title" aria-label="TOKVERSE title screen">
+  <div class="t-left">
+    <img class="wm" src="/assets/wordmark.png" alt="TOKVERSE" width="188" height="27">
+    <p class="t-sub">the trenches went vertical.</p>
+    <button class="btn big" id="enter" type="button"><span class="tri"></span>NOW IN GAME</button>
+    <div class="t-row">
+      <button class="btn w" type="button" data-open="launch">LAUNCH A COIN</button>
+      <button class="btn w" type="button" data-open="how">HOW IT WORKS</button>
+      <button class="btn w" type="button" data-open="dir">DIRECTORY</button>
+    </div>
+    <div class="t-stat"><i class="dot off" id="tDot"></i><span id="tStat">opening the building…</span></div>
+    <div class="t-senti" id="tSenti" hidden><div class="senti"><span></span></div><small></small></div>
+    <div class="t-board" id="tBoard" hidden></div>
+    <div class="ca" id="caT" hidden><span></span><button class="btn sm" type="button" data-copyca>COPY CA</button></div>
+  </div>
+  <div class="t-right"><canvas id="island" width="272" height="167" aria-label="TOKVERSE tower island with live coins"></canvas></div>
+  <div class="t-foot"><span class="press">PRESS ENTER</span> · LIVE PUMP.FUN COINS</div>
+</section>
+
+<header id="hud" hidden>
+  <button class="logo" id="toTitle" type="button" title="Title screen"><img src="/assets/wordmark-s.png" alt="TOKVERSE" width="126" height="20"></button>
+  <button class="btn w sm" id="menuBtn" type="button" aria-label="Menu">MENU</button>
+  <nav id="nav">
+    <button type="button" data-go="PH">PENTHOUSE</button>
+    <button type="button" data-go="hot">HOT FLOOR</button>
+    <button type="button" data-go="L">LOBBY</button>
+    <button type="button" data-go="B">BASEMENT</button>
+    <button type="button" data-open="dir">DIRECTORY</button>
+    <button type="button" data-open="watch">WATCHLIST</button>
+    <button type="button" data-open="launch">LAUNCH</button>
+    <button type="button" data-open="how">HOW</button>
+  </nav>
+  <span class="sp"></span>
+  <span class="hstat"><i class="dot off" id="hDot"></i><span id="hStat">—</span></span>
+  <form id="search" role="search" autocomplete="off"><input id="q" type="search" placeholder="find a coin: ticker, name or CA" aria-label="Find a coin"><button type="submit">GO</button></form>
+  <a class="x-l" id="xLink" href="#" target="_blank" rel="noopener" hidden>X</a>
+  <button id="snd" type="button" aria-pressed="false" title="Sound">SFX OFF</button>
+  <button class="btn sm" id="wbtn" type="button" data-wallet>CONNECT</button>
+  <div id="tape" aria-label="Live movers this hour" hidden><div class="tape-in"></div></div>
+</header>
+
+<main id="game" hidden>
+  <div id="towerWrap">
+    <div id="tower">
+      <div id="crown" aria-hidden="true"></div>
+      <div id="roof" aria-hidden="true"></div>
+      <div id="floors"></div>
+      <div id="street" aria-hidden="true"></div>
+      <div class="dirt" aria-hidden="true"></div>
+      <div id="basement"></div>
+      <div class="dirt deep">
+        <footer id="foot">
+          <div>TOKVERSE · live pump.fun coins, one floor per market cap range</div>
+          <div class="fl2"><span>DATA: PUMP.FUN + DEXSCREENER</span><span>NOT AFFILIATED WITH PUMP.FUN</span><span>NOT FINANCIAL ADVICE</span><a href="#" id="xFoot" target="_blank" rel="noopener" hidden>X</a></div>
+        </footer>
+      </div>
+      <div id="cable" aria-hidden="true"></div>
+      <div id="car" aria-hidden="true"></div>
+    </div>
+  </div>
+</main>
+
+<aside id="logp" class="win" hidden aria-label="Elevator log">
+  <div class="bar"><b>ELEVATOR LOG</b><button class="x" type="button" data-close-side aria-label="Close">×</button></div>
+  <div class="sbox" id="sbox" hidden><div class="senti"><span></span></div><small></small></div>
+  <div id="myk" hidden></div>
+  <ol id="log"><li class="empty">waiting for the first moves…</li></ol>
+</aside>
+
+<aside id="panel" hidden aria-label="Elevator">
+  <div class="disp"><i id="dArrow">▲</i><b id="dFloor">L</b></div>
+  <div class="dinfo" id="dInfo">—</div>
+  <div class="keys" id="keys"></div>
+  <div class="quick">
+    <button class="btn" type="button" id="qUp">▲ TOP 1H</button>
+    <button class="btn r" type="button" id="qDn">▼ WORST 1H</button>
+  </div>
+</aside>
+<button class="btn fab" id="fabL" type="button" hidden>LOG</button>
+<button class="btn fab" id="fabE" type="button" hidden>ELEVATOR</button>
+
+<div id="modal" hidden role="dialog" aria-modal="true" aria-labelledby="mTitle">
+  <div class="win" id="mWin"><div class="bar"><b id="mTitle"></b><button class="x" type="button" data-close aria-label="Close">×</button></div><div id="mBody"></div></div>
+</div>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script type="module" src="/js/app.js?v=1"></script>
+</body>
+</html>
